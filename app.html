@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="./source/stylesheets/style.scss">
     <title>html5-player</title>
   </head>
   <body>
-
     <div id="interface">
+
       <div id="videoarea">
-        <video>
+        <video id="videoarea-container">
           <source src="/path/to/video">
         </video>
       </div>
+
+      <div id="progressbar">
+        <div id="progressbar-container"></div>
+      </div>
+
       <div id="controls">
-        <img src="/source/images/button-play.png">
+        <img class="control-button-image" src="./source/images/button-play.png">
         <div id="play"></div>
         <div id="time-done">00:00 - 00:00</div>
-        <div id="progressbar">
-          <div id="progressbar-component"></div>
-        </div>
-        <img src="/source/images/button-volume.png">
+        <img class="control-button-image" src="./source/images/button-volume.png">
         <div id="volume">
-          <div id="volume-component"></div>
+          <div id="volume-container"></div>
         </div>
-        <img src="/source/images/button-fullscreen.png">
+        <img class="control-button-image" src="./source/images/button-fullscreen.png">
         <div id="fullscreen"></div>
       </div>
-    </div>
 
+    </div>
   </body>
 </html>
