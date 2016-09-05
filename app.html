@@ -2,31 +2,32 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="./source/stylesheets/style.scss">
+    <script src="./source/javascripts/events.js"></script>
     <title>html5-player</title>
   </head>
   <body>
     <div id="interface">
 
       <div id="videoarea">
-        <video id="videoarea-container">
-          <source src="/path/to/video">
+        <video id="video-element">
+          <source src="./source/videos/demo.webm" type='video/webm'>
         </video>
       </div>
 
       <div id="progressbar">
-        <div id="progressbar-container"></div>
+        <div id="progressbar-container">
+          <div id="progressbar-done"></div>
+        </div>
       </div>
 
       <div id="controls">
-        <img class="control-button-image" src="./source/images/button-play.png">
-        <div id="play"></div>
+        <img id="button-play" src="./source/images/button-play.png">
         <div id="time-done">00:00 - 00:00</div>
-        <img class="control-button-image" src="./source/images/button-volume.png">
+        <img id="button-volume" src="./source/images/button-volume.png">
         <div id="volume">
           <div id="volume-container"></div>
         </div>
-        <img class="control-button-image" src="./source/images/button-fullscreen.png">
-        <div id="fullscreen"></div>
+        <img id="button-fullscreen" src="./source/images/button-fullscreen.png">
       </div>
 
     </div>
