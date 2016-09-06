@@ -8,42 +8,38 @@
     -ms-user-select: none;
 }
 
-  #videoarea {
+  #video-container {
     width: 100%;
     height: 360px;
   }
 
-    #video-element {
+    #video {
       background-color: grey;
       width: 100%;
       height: 100%;
     }
 
-  #progressbar {
-
+  #progressbar-container {
+    height: 8px;
+    background-color: #6D27C7;
   }
 
-    #progressbar-container {
-      height: 8px;
-      background-color: #6D27C7;
+    #progressbar {
+      height: 100%;
+      width: 0%;
+      background-color: #A067E9;
     }
 
-      #progressbar-done {
-        height: 100%;
-        width: 0%;
-        background-color: #A067E9;
-      }
-
-  #controls {
+  #controls-container {
     height: 25px;
   }
 
-    #controls > * {
+    #controls-container > * {
       display: inline-block;
       vertical-align: middle;
     }
 
-    #button-play, #button-volume, #button-fullscreen {
+    #button-play, #button-mute, #button-fullscreen {
       width: 25px;
       height: 25px;
     }
@@ -57,5 +53,3 @@
       height: 3px;
       background-color: #6D27C7;
     }
-
-      #
