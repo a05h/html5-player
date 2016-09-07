@@ -1,11 +1,12 @@
 #interface {
-  background-color: #1A1A1A;
-  padding: 5px;
+  background-color: #E4E4E4;
+  padding: 2px;
   width: 650px;
   user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+  //background: url(./source/images/default-button-sprite.png) no-repeat;
 }
 
   #video-container {
@@ -14,20 +15,20 @@
   }
 
     #video {
-      background-color: grey;
+      background-color: #E4E4E4;
       width: 100%;
       height: 100%;
     }
 
   #progressbar-container {
-    height: 8px;
-    background-color: #6D27C7;
+    height: 10px;
+    background-color: #BBBBBB;
   }
 
-    #progressbar {
+    #progressbar-element {
       height: 100%;
       width: 0%;
-      background-color: #A067E9;
+      background-color: #0094FF;
     }
 
   #controls-container {
@@ -45,11 +46,19 @@
     }
 
     #time-done {
-
+      font-family: "Sans", sans;
+      font-size: 14px;
+      color: #BBBBBB
     }
 
     #volume-container {
       width: 100px;
-      height: 3px;
-      background-color: #6D27C7;
+      height: 8px;
+      background-color: #BBBBBB;
     }
+
+      #volume-element {
+        width: 50%;
+        height: 100%;
+        background-color: #0094FF;
+      }

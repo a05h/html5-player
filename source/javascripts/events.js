@@ -3,8 +3,8 @@ window.addEventListener('load', function() {
   video.addEventListener('click', eventPlay, false);
   buttonPlay = document.getElementById('button-play');
   buttonPlay.addEventListener('click', eventPlay, false);
-  muteButton = document.getElementById('button-mute');
-  muteButton.addEventListener('click', eventMute, false);
+  buttonMute = document.getElementById('button-mute');
+  buttonMute.addEventListener('click', eventMute, false);
   buttonFullscreen = document.getElementById('button-fullscreen');
   buttonFullscreen.addEventListener('click', eventFullscreen, false);
 
@@ -12,16 +12,41 @@ window.addEventListener('load', function() {
   progressbarContainer.addEventListener('click', setProgress, false);
   volumeContainer = document.getElementById('volume-container');
   volumeContainer.addEventListener('click', setVolume, false);
-  progressbar = document.getElementById('progressbar');
-  volume = document.getElementById('volume');
-  timeDone = document.getElementById('time-done');
+  progressbarElement = document.getElementById('progressbar-element');
+  volumeElement = document.getElementById('volume-element');
 }, false);
+
+function progressVideo() {
+  var result = (video.currentTime / video.duration) * 100;
+  progressbarElement.style.width = result + '%';
+  window.clearInterval(checkProgress);
+  if (video.paused) {
+    buttonPlay.src = './source/images/button-play.png';
+  }
+};
+
+function setProgress(clickArea) {
+  var width = window.getComputedStyle(progressbarContainer).getPropertyValue('width');
+  width = parseFloat(width.substr(null));
+  video.currentTime = ((clickArea.pageX - progressbarContainer.offsetLeft) / width) * video.duration;
+  window.clearInterval(checkProgress);
+  progressVideo();
+};
+
+function setVolume(clickArea) {
+  var width = window.getComputedStyle(volumeContainer).getPropertyValue('width');
+  width = parseFloat(width.substr(null));
+  video.volume = ((clickArea.pageX - volumeContainer.offsetLeft) / width);
+  volumeElement.style.width = ((clickArea.pageX - volumeContainer.offsetLeft) / width) * 100 + "%";
+};
 
 function eventPlay() {
   var checkProgress = setInterval(progressVideo, 0);
+  video.volume = (0.50);
+  volumeElement.style.width = 50 + "%";
   if (video.paused) {
     video.play();
-    buttonPlay.src = './source/images/button-volume.png';
+    buttonPlay.src = './source/images/button-pause.png';
   } else {
     video.pause();
     buttonPlay.src = './source/images/button-play.png';
@@ -30,23 +55,14 @@ function eventPlay() {
 };
 
 function eventMute() {
-};
-
-function eventFullscreen() {
-};
-
-function progressVideo() {
-  var result = (video.currentTime / video.duration) * 100;
-  progressbar.style.width = result + '%';
-  if (video.ended || video.paused) {
-    buttonPlay.src = './source/images/button-play.png';
+  if (video.muted == false) {
+    video.muted = true;
+    buttonMute.src = './source/images/button-muteplus.png';
+  } else {
+    video.muted = false;
+    buttonMute.src = './source/images/button-muteminus.png';
   }
 };
 
-function setProgress(clickArea) {
-  var width = window.getComputedStyle(progressbarContainer).getPropertyValue('width');
-  width = parseFloat(width.substr(0, width.length - 1));
-  video.currentTime = ((clickArea.pageX - progressbarContainer.offsetLeft) / width) * video.duration;
-  window.clearInterval(checkProgress);
-  progressVideo();
+function eventFullscreen() {
 };
