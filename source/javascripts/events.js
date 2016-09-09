@@ -7,21 +7,24 @@ window.addEventListener('load', function() {
   buttonMute.addEventListener('click', eventMute, false);
   buttonFullscreen = document.getElementById('button-fullscreen');
   buttonFullscreen.addEventListener('click', eventFullscreen, false);
-
   progressbarContainer = document.getElementById('progressbar-container');
   progressbarContainer.addEventListener('click', setProgress, false);
   volumeContainer = document.getElementById('volume-container');
   volumeContainer.addEventListener('click', setVolume, false);
   progressbarElement = document.getElementById('progressbar-element');
   volumeElement = document.getElementById('volume-element');
+
+  video.volume = (0.50);
+  volumeElement.style.width = 50 + "%";
 }, false);
 
 function progressVideo() {
   var result = (video.currentTime / video.duration) * 100;
   progressbarElement.style.width = result + '%';
-  window.clearInterval(checkProgress);
   if (video.paused) {
     buttonPlay.src = './source/images/button-play.png';
+  } else {
+    buttonPlay.src = './source/images/button-pause.png';
   }
 };
 
@@ -42,8 +45,6 @@ function setVolume(clickArea) {
 
 function eventPlay() {
   var checkProgress = setInterval(progressVideo, 0);
-  video.volume = (0.50);
-  volumeElement.style.width = 50 + "%";
   if (video.paused) {
     video.play();
     buttonPlay.src = './source/images/button-pause.png';
@@ -65,4 +66,13 @@ function eventMute() {
 };
 
 function eventFullscreen() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.webkitRequestFullscreen) {
+    video.webkitRequestFullscreen(); //all okay
+  } else if (video.mozRequestFullscreen) {
+    video.mozRequestFullscreen(); //not working in firefox
+  } else if (video.msRequestFullscreen) {
+    video.msRequestFullscreen() //?
+  }
 };
