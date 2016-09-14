@@ -19,6 +19,13 @@
       height: 100%;
     }
 
+    video::-webkit-media-controls {display:none !important;}
+    video::-webkit-media-controls-enclosure {display:none !important;}
+    video::-moz-media-controls {display:none !important;}
+    video::-moz-media-controls-enclosure {display:none !important;}
+    video::-ms-media-controls {display:none !important;}
+    video::-ms-media-controls-enclosure {display:none !important;}
+
   #progressbar-container {
     height: 10px;
     background-color: #BBBBBB;

@@ -65,14 +65,16 @@ function eventMute() {
   }
 };
 
-function eventFullscreen() {
+function eventFullscreen() { // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
   if (video.requestFullscreen) {
     video.requestFullscreen();
   } else if (video.webkitRequestFullscreen) {
-    video.webkitRequestFullscreen(); //all okay
-  } else if (video.mozRequestFullscreen) {
-    video.mozRequestFullscreen(); //not working in firefox
+    video.webkitRequestFullscreen();
+  } else if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen();
+    //video.style.width = 100 + '%';
+    //video.style.height = 100 + '%';
   } else if (video.msRequestFullscreen) {
-    video.msRequestFullscreen() //?
+    video.msRequestFullscreen(); //?
   }
 };
