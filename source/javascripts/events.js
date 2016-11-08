@@ -13,10 +13,29 @@ window.addEventListener('load', function() {
   volumeContainer.addEventListener('click', setVolume, false);
   progressbarElement = document.getElementById('progressbar-element');
   volumeElement = document.getElementById('volume-element');
+  timeDone = document.getElementById('time-done');
 
   video.volume = (0.50);
   volumeElement.style.width = 50 + "%";
 }, false);
+
+function timeVideo() {
+  var m = parseInt(video.currentTime / 60 % 60);
+  var s = parseInt(video.currentTime % 60);
+  if (m < 10) {
+    if (s >= 10) {
+      timeDone.innerHTML = '0' + m + ':' + s;
+    } else {
+      timeDone.innerHTML = '0' + m + ':' + '0' + s;
+    }
+  } else {
+    if (s >= 10) {
+      timeDone.innerHTML = m + ':' + s;
+    } else {
+      timeDone.innerHTML = m + ':' + '0' + s;
+    }
+  }
+};
 
 function progressVideo() {
   var result = (video.currentTime / video.duration) * 100;
@@ -26,6 +45,7 @@ function progressVideo() {
   } else {
     buttonPlay.style.backgroundColor = "#0094FF";
   }
+  timeVideo();
 };
 
 function setProgress(clickArea) {
@@ -33,7 +53,7 @@ function setProgress(clickArea) {
   width = parseFloat(width.substr(null));
   video.currentTime = ((clickArea.pageX - progressbarContainer.offsetLeft) / width) * video.duration;
   window.clearInterval(checkProgress);
-  progressVideo();
+  //progressVideo();
 };
 
 function setVolume(clickArea) {
@@ -48,7 +68,6 @@ function eventPlay() {
   if (video.paused) {
     video.play();
     buttonPlay.style.backgroundColor = "#0094FF";
-
   } else {
     video.pause();
     buttonPlay.style.backgroundColor = "#BBBBBB";
@@ -60,9 +79,11 @@ function eventMute() {
   if (video.muted == false) {
     video.muted = true;
     buttonMute.style.backgroundColor = "#0094FF";
+    volumeElement.style.backgroundColor = "#BBBBBB";
   } else {
     video.muted = false;
     buttonMute.style.backgroundColor = "#BBBBBB";
+    volumeElement.style.backgroundColor = "#0094FF";
   }
 };
 
@@ -73,8 +94,6 @@ function eventFullscreen() { // https://developer.mozilla.org/en-US/docs/Web/API
     video.webkitRequestFullscreen();
   } else if (video.mozRequestFullScreen) {
     video.mozRequestFullScreen();
-    //video.style.width = 100 + '%';
-    //video.style.height = 100 + '%';
   } else if (video.msRequestFullscreen) {
     video.msRequestFullscreen(); //?
   }

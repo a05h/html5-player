@@ -39,6 +39,7 @@
 
   #controls-container {
     height: 25px;
+    cursor: default;
   }
 
     #controls-container > * {
@@ -51,6 +52,7 @@
       height: 25px;
       background: url("../images/button-play.png");
       background-color: #BBBBBB;
+      margin-left: 4px;
     }
 
     #button-mute {
@@ -58,6 +60,7 @@
       height: 25px;
       background: url("../images/button-muteminus.png");
       background-color: #BBBBBB;
+      margin-left: 5px;
     }
 
     #button-fullscreen {
@@ -65,12 +68,15 @@
       height: 25px;
       background: url("../images/button-fullscreen.png");
       background-color: #BBBBBB;
+      margin-right: 4px;
+      float: right;
     }
 
     #time-done {
       font-family: "Sans", sans;
       font-size: 14px;
-      color: #BBBBBB
+      color: #BBBBBB;
+      margin-left: 5px;
     }
 
     #volume-container {
