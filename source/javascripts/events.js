@@ -61,6 +61,9 @@ function setVolume(clickArea) {
   width = parseFloat(width.substr(null));
   video.volume = ((clickArea.pageX - volumeContainer.offsetLeft) / width);
   volumeElement.style.width = ((clickArea.pageX - volumeContainer.offsetLeft) / width) * 100 + "%";
+  video.muted = false;
+  buttonMute.style.backgroundColor = "#BBBBBB";
+  volumeElement.style.backgroundColor = "#0094FF";
 };
 
 function eventPlay() {
