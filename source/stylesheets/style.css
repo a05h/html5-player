@@ -46,9 +46,25 @@
       vertical-align: middle;
     }
 
-    #button-play, #button-mute, #button-fullscreen {
+    #button-play {
       width: 25px;
       height: 25px;
+      background: url("../images/button-play.png");
+      background-color: #BBBBBB;
+    }
+
+    #button-mute {
+      width: 25px;
+      height: 25px;
+      background: url("../images/button-muteminus.png");
+      background-color: #BBBBBB;
+    }
+
+    #button-fullscreen {
+      width: 25px;
+      height: 25px;
+      background: url("../images/button-fullscreen.png");
+      background-color: #BBBBBB;
     }
 
     #time-done {

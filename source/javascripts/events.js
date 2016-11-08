@@ -22,9 +22,9 @@ function progressVideo() {
   var result = (video.currentTime / video.duration) * 100;
   progressbarElement.style.width = result + '%';
   if (video.paused) {
-    buttonPlay.src = './source/images/button-play.png';
+    buttonPlay.style.backgroundColor = "#BBBBBB";
   } else {
-    buttonPlay.src = './source/images/button-pause.png';
+    buttonPlay.style.backgroundColor = "#0094FF";
   }
 };
 
@@ -47,10 +47,11 @@ function eventPlay() {
   var checkProgress = setInterval(progressVideo, 0);
   if (video.paused) {
     video.play();
-    buttonPlay.src = './source/images/button-pause.png';
+    buttonPlay.style.backgroundColor = "#0094FF";
+
   } else {
     video.pause();
-    buttonPlay.src = './source/images/button-play.png';
+    buttonPlay.style.backgroundColor = "#BBBBBB";
     window.clearInterval(checkProgress);
   }
 };
@@ -58,10 +59,10 @@ function eventPlay() {
 function eventMute() {
   if (video.muted == false) {
     video.muted = true;
-    buttonMute.src = './source/images/button-muteplus.png';
+    buttonMute.style.backgroundColor = "#0094FF";
   } else {
     video.muted = false;
-    buttonMute.src = './source/images/button-muteminus.png';
+    buttonMute.style.backgroundColor = "#BBBBBB";
   }
 };
 
