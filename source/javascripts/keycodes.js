@@ -13,8 +13,11 @@ window.addEventListener("keydown", function(kbClick) {
       video.currentTime += 10;
       break;
     case 38: //arrow up = sound +10%
+      video.muted = false;
+      volumeElement.style.backgroundColor = "#0094FF";
+      buttonMute.style.backgroundColor = "#BBBBBB";
       if (video.volume > 0.9) {
-        video.volume += 1;
+        video.volume = 1;
         volumeElement.style.width = "100%";
       } else {
         video.volume += 0.1;
@@ -22,8 +25,12 @@ window.addEventListener("keydown", function(kbClick) {
       }
       break;
     case 40: //arrow down = sound -10%
+      video.muted = false;
+      volumeElement.style.backgroundColor = "#0094FF";
+      buttonMute.style.backgroundColor = "#BBBBBB";
       if (video.volume < 0.1) {
         video.volume = 0;
+        buttonMute.style.backgroundColor = "#0094FF";
         volumeElement.style.width = "0%";
       } else {
         video.volume -= 0.1;
