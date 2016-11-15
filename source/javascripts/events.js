@@ -53,7 +53,6 @@ function setProgress(clickArea) {
   width = parseFloat(width.substr(null));
   video.currentTime = ((clickArea.pageX - progressbarContainer.offsetLeft) / width) * video.duration;
   window.clearInterval(checkProgress);
-  //progressVideo();
 };
 
 function setVolume(clickArea) {
@@ -98,6 +97,6 @@ function eventFullscreen() { // https://developer.mozilla.org/en-US/docs/Web/API
   } else if (video.mozRequestFullScreen) {
     video.mozRequestFullScreen();
   } else if (video.msRequestFullscreen) {
-    video.msRequestFullscreen(); //?
+    video.msRequestFullscreen();
   }
 };
