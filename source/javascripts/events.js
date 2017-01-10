@@ -1,47 +1,50 @@
-window.addEventListener('load', function() {
-  video = document.getElementById('video');
-  video.addEventListener('click', eventPlay, false);
-  buttonPlay = document.getElementById('button-play');
-  buttonPlay.addEventListener('click', eventPlay, false);
-  buttonMute = document.getElementById('button-mute');
-  buttonMute.addEventListener('click', eventMute, false);
-  buttonFullscreen = document.getElementById('button-fullscreen');
-  buttonFullscreen.addEventListener('click', eventFullscreen, false);
-  progressbarContainer = document.getElementById('progressbar-container');
-  progressbarContainer.addEventListener('click', setProgress, false);
-  volumeContainer = document.getElementById('volume-container');
-  volumeContainer.addEventListener('click', setVolume, false);
-  progressbarElement = document.getElementById('progressbar-element');
-  volumeElement = document.getElementById('volume-element');
-  timeDone = document.getElementById('time-done');
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  video = document.getElementById("video");
+  video.addEventListener("click", eventPlay, false);
+  buttonPlay = document.getElementById("button-play");
+  buttonPlay.addEventListener("click", eventPlay, false);
+  buttonMute = document.getElementById("button-mute");
+  buttonMute.addEventListener("click", eventMute, false);
+  buttonFullscreen = document.getElementById("button-fullscreen");
+  buttonFullscreen.addEventListener("click", eventFullscreen, false);
+  progressbarContainer = document.getElementById("progressbar-container");
+  progressbarContainer.addEventListener("click", setProgress, false);
+  volumeContainer = document.getElementById("volume-container");
+  volumeContainer.addEventListener("click", setVolume, true);
+  progressbarElement = document.getElementById("progressbar-element");
+  volumeElement = document.getElementById("volume-element");
+  timeDone = document.getElementById("time-done");
+  muteIndicator = document.getElementById("mute-indicator");
 
   video.volume = (0.50);
   volumeElement.style.width = 50 + "%";
-}, false);
+};
 
 function timeVideo() {
   var m = parseInt(video.currentTime / 60 % 60);
   var s = parseInt(video.currentTime % 60);
   if (m < 10) {
     if (s >= 10) {
-      timeDone.innerHTML = '0' + m + ':' + s;
+      timeDone.innerHTML = "0" + m + ":" + s;
     } else {
-      timeDone.innerHTML = '0' + m + ':' + '0' + s;
+      timeDone.innerHTML = "0" + m + ":" + "0" + s;
     }
   } else {
     if (s >= 10) {
-      timeDone.innerHTML = m + ':' + s;
+      timeDone.innerHTML = m + ":" + s;
     } else {
-      timeDone.innerHTML = m + ':' + '0' + s;
+      timeDone.innerHTML = m + ":" + "0" + s;
     }
   }
 };
 
 function progressVideo() {
   var result = (video.currentTime / video.duration) * 100;
-  progressbarElement.style.width = result + '%';
+  progressbarElement.style.width = result + "%";
   if (video.paused) {
-    buttonPlay.style.backgroundColor = "#BBBBBB";
+    buttonPlay.style.backgroundColor = "#C7C7C7";
   } else {
     buttonPlay.style.backgroundColor = "#0094FF";
   }
@@ -49,7 +52,7 @@ function progressVideo() {
 };
 
 function setProgress(clickArea) {
-  var width = window.getComputedStyle(progressbarContainer).getPropertyValue('width');
+  var width = window.getComputedStyle(progressbarContainer).getPropertyValue("width");
   width = parseFloat(width.substr(null));
   video.currentTime = ((clickArea.pageX - progressbarContainer.offsetLeft) / width) * video.duration;
   window.clearInterval(checkProgress);
@@ -61,8 +64,9 @@ function setVolume(clickArea) {
   video.volume = ((clickArea.pageX - volumeContainer.offsetLeft) / width);
   volumeElement.style.width = ((clickArea.pageX - volumeContainer.offsetLeft) / width) * 100 + "%";
   video.muted = false;
-  buttonMute.style.backgroundColor = "#BBBBBB";
+  buttonMute.style.backgroundColor = "#C7C7C7";
   volumeElement.style.backgroundColor = "#0094FF";
+  muteIndicator.style.opacity = "0";
 };
 
 function eventPlay() {
@@ -72,7 +76,7 @@ function eventPlay() {
     buttonPlay.style.backgroundColor = "#0094FF";
   } else {
     video.pause();
-    buttonPlay.style.backgroundColor = "#BBBBBB";
+    buttonPlay.style.backgroundColor = "#C7C7C7";
     window.clearInterval(checkProgress);
   }
 };
@@ -81,15 +85,18 @@ function eventMute() {
   if (video.muted == false) {
     video.muted = true;
     buttonMute.style.backgroundColor = "#0094FF";
-    volumeElement.style.backgroundColor = "#BBBBBB";
+    volumeElement.style.backgroundColor = "#C7C7C7";
+    muteIndicator.style.opacity = "1";
   } else {
     video.muted = false;
-    buttonMute.style.backgroundColor = "#BBBBBB";
+    buttonMute.style.backgroundColor = "#C7C7C7";
     volumeElement.style.backgroundColor = "#0094FF";
+    muteIndicator.style.opacity = "0";
   }
 };
 
-function eventFullscreen() { // https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+// https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
+function eventFullscreen() {
   if (video.requestFullscreen) {
     video.requestFullscreen();
   } else if (video.webkitRequestFullscreen) {

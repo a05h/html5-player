@@ -1,9 +1,9 @@
-window.addEventListener("keydown", function(kbClick) {
+document.addEventListener("keydown", function(kbClick) {
   switch (kbClick.keyCode) {
     case 32: //space = stop/play
       eventPlay();
       break;
-    case 8: //backspace = mute/unmute
+    case 77: //M = mute/unmute
       eventMute();
       break;
     case 37: //arrow left = video progress -10sec
@@ -15,7 +15,9 @@ window.addEventListener("keydown", function(kbClick) {
     case 38: //arrow up = sound +10%
       video.muted = false;
       volumeElement.style.backgroundColor = "#0094FF";
-      buttonMute.style.backgroundColor = "#BBBBBB";
+      buttonMute.style.backgroundColor = "#C7C7C7";
+
+      muteIndicator.style.opacity = "0";
       if (video.volume > 0.9) {
         video.volume = 1;
         volumeElement.style.width = "100%";
@@ -27,10 +29,11 @@ window.addEventListener("keydown", function(kbClick) {
     case 40: //arrow down = sound -10%
       video.muted = false;
       volumeElement.style.backgroundColor = "#0094FF";
-      buttonMute.style.backgroundColor = "#BBBBBB";
+      buttonMute.style.backgroundColor = "#C7C7C7";
       if (video.volume < 0.1) {
         video.volume = 0;
         buttonMute.style.backgroundColor = "#0094FF";
+        muteIndicator.style.opacity = "1";
         volumeElement.style.width = "0%";
       } else {
         video.volume -= 0.1;
@@ -43,4 +46,4 @@ window.addEventListener("keydown", function(kbClick) {
     default:
       break;
   }
-}, false);
+});
